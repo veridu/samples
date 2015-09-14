@@ -1,0 +1,14 @@
+#ignore local settings file
+php/settings.php
+
+#ignore local challenge-api settings file
+php/challenge-api/facebook-settings.php
+
+#ignore local sso-api settings file
+php/sso-api/facebook-settings.php
+
+#ignore composer's vendor folder
+php/challenge-api/vendor/
+php/challenge-widget/vendor/
+php/sso-api/vendor/
+php/sso-widget/vendor/

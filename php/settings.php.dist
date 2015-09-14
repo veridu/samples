@@ -1,0 +1,18 @@
+<?php
+
+$veridu = array(
+	'key' => '',
+	'secret' => '',
+	'version' => '0.3'
+);
+
+if (empty($veridu['key']))
+	die('Please insert proper $veridu[\'key\'] configuration in settings.php');
+
+
+if (empty($veridu['secret']))
+	die('Please insert proper $veridu[\'secret\'] configuration in settings.php');
+
+
+if (empty($veridu['version']))
+	die('Please insert proper $veridu[\'version\'] configuration in settings.php');

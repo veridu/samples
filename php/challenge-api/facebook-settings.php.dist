@@ -1,0 +1,12 @@
+<?php
+
+$facebook = array(
+	'key' => '',
+	'secret' => ''
+);
+
+if (empty($facebook['key']))
+	die('Please insert proper $facebook[\'key\'] configuration in challenge-api/facebook-settings.php');
+
+if (empty($facebook['secret']))
+	die('Please insert proper $facebook[\'secret\'] configuration in challenge-api/facebook-settings.php');
