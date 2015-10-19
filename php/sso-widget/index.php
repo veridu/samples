@@ -16,9 +16,9 @@ require_once __DIR__ . '/../settings.php';
 $session = new Veridu\SDK\Session(
 	new Veridu\SDK\API(
 		new Veridu\Common\Config(
-			$config['client'],
-			$config['secret'],
-			$config['version']
+			$veridu['client'],
+			$veridu['secret'],
+			$veridu['version']
 		),
 		new Veridu\HTTPClient\CurlClient,
 		new Veridu\Signature\HMAC
@@ -39,7 +39,7 @@ $_SESSION['nonce'] = bin2hex(openssl_random_pseudo_bytes(10));
 		<!-- Loading the jQuery Library (required by Widget Library) -->
 		<script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 		<!-- Loading the Widget Library (more info: https://veridu.com/wiki/Widget_Library) -->
-		<script type="text/javascript" src="https://assets.veridu.com/<?=$config['version'];?>/sdk/veridu-widget.js"></script>
+		<script type="text/javascript" src="https://assets.veridu.com/<?=$veridu['version'];?>/sdk/veridu-widget.js"></script>
 	</head>
 	<body>
 		<div id="widget" style="width: 100%; height: 540px"></div>
@@ -47,11 +47,11 @@ $_SESSION['nonce'] = bin2hex(openssl_random_pseudo_bytes(10));
 			$(function () {
 				var //Widget instantiation
 					veridu = new Veridu({
-						client: '<?=$config['client'];?>',
+						client: '<?=$veridu['client'];?>',
 						session: '<?=$session->getToken();?>',
 						language: 'en-us',
 						country: 'uk',
-						version: '<?=$config['version'];?>'
+						version: '<?=$veridu['version'];?>'
 					});
 				//displaying the sso widget
 				//more info: https://veridu.com/wiki/SSO_Widget

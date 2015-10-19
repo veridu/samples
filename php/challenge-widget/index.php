@@ -18,9 +18,9 @@ $username = 'unique-user-id';
 $session = new Veridu\SDK\Session(
 	new Veridu\SDK\API(
 		new Veridu\Common\Config(
-			$config['client'],
-			$config['secret'],
-			$config['version']
+			$veridu['client'],
+			$veridu['secret'],
+			$veridu['version']
 		),
 		new Veridu\HTTPClient\CurlClient,
 		new Veridu\Signature\HMAC
@@ -43,7 +43,7 @@ $session->assign($username);
 		<!-- Loading the jQuery Library (required by Widget Library) -->
 		<script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 		<!-- Loading the Widget Library (more info: https://veridu.com/wiki/Widget_Library) -->
-		<script type="text/javascript" src="https://assets.veridu.com/<?=$config['version'];?>/sdk/veridu-widget.js"></script>
+		<script type="text/javascript" src="https://assets.veridu.com/<?=$veridu['version'];?>/sdk/veridu-widget.js"></script>
 	</head>
 	<body>
 		<!-- Widget Container -->
@@ -51,11 +51,11 @@ $session->assign($username);
 		<script type="text/javascript">
 			var //Widget instantiation
 				veridu = new Veridu({
-					client: '<?=$config['client'];?>',
+					client: '<?=$veridu['client'];?>',
 					session: '<?=$session->getToken();?>',
 					language: 'en-us',
 					country: 'uk',
-					version: '<?=$config['version'];?>'
+					version: '<?=$veridu['version'];?>'
 				});
 				//displaying the profile widget
 				//more info: https://veridu.com/wiki/Challenge_Widget
