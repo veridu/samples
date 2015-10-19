@@ -39,7 +39,7 @@ $_SESSION['nonce'] = bin2hex(openssl_random_pseudo_bytes(10));
 		<!-- Loading the jQuery Library (required by Widget Library) -->
 		<script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 		<!-- Loading the Widget Library (more info: https://veridu.com/wiki/Widget_Library) -->
-		<script type="text/javascript" src="https://assets.veridu.com/<?=$veridu['version'];?>/sdk/veridu-widget.js"></script>
+		<script type="text/javascript" src="https://assets.veridu.com/<?=$veridu['version'];?>/sdk/veridu-sso.js"></script>
 	</head>
 	<body>
 		<div id="widget" style="width: 100%; height: 540px"></div>
