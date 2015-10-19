@@ -1,13 +1,13 @@
 <?php
 
 $veridu = array(
-	'key' => '',
+	'client' => '',
 	'secret' => '',
 	'version' => '0.3'
 );
 
-if (empty($veridu['key']))
-	die('Please insert proper $veridu[\'key\'] configuration in settings.php');
+if (empty($veridu['client']))
+	die('Please insert proper $veridu[\'client\'] configuration in settings.php');
 
 
 if (empty($veridu['secret']))
