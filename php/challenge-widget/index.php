@@ -59,7 +59,13 @@ $session->assign($username);
 				});
 				//displaying the profile widget
 				//more info: https://veridu.com/wiki/Challenge_Widget
-				veridu.Widget.challenge($('#widget'), '<?=$username;?>', ['facebook','linkedin','paypal','amazon','twitter','google','instagram','yahoo','email','sms','spotafriend','cpr','nemid','personal','document']);
+				veridu.Widget.challenge(
+					$('#widget'),
+					'<?=$username;?>',
+					{
+						setup: ['facebook','linkedin','paypal','amazon','twitter','google','instagram','yahoo','email','sms','spotafriend','cpr','nemid','personal','document']
+					}
+				);
 		</script>
 	</body>
 </html>
