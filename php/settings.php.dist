@@ -7,12 +7,12 @@ $veridu = array(
 );
 
 if (empty($veridu['client']))
-	die('Please insert proper $veridu[\'client\'] configuration in settings.php');
+	die('Please insert proper $veridu[\'client\'] configuration in ' . __FILE__);
 
 
 if (empty($veridu['secret']))
-	die('Please insert proper $veridu[\'secret\'] configuration in settings.php');
+	die('Please insert proper $veridu[\'secret\'] configuration in ' . __FILE__);
 
 
 if (empty($veridu['version']))
-	die('Please insert proper $veridu[\'version\'] configuration in settings.php');
+	die('Please insert proper $veridu[\'version\'] configuration in ' . __FILE__);

@@ -29,6 +29,9 @@ $session = new Veridu\SDK\Session(
 //more info: https://veridu.com/wiki/Session_Resource
 $session->create(false);
 
+//PHP's session start
+session_start();
+
 $_SESSION['nonce'] = bin2hex(openssl_random_pseudo_bytes(10));
 
 ?>
@@ -55,7 +58,12 @@ $_SESSION['nonce'] = bin2hex(openssl_random_pseudo_bytes(10));
 					});
 				//displaying the sso widget
 				//more info: https://veridu.com/wiki/SSO_Widget
-				veridu.SSO.widget('http://127.0.0.1:8080/callback.php', $('#widget'), ["facebook","linkedin","paypal","amazon","google"], '<?=$_SESSION['nonce'];?>');
+				veridu.SSO.widget(
+					'http://127.0.0.1:8080/callback.php',
+					$('#widget'),
+					["facebook","linkedin","paypal","amazon","google"],
+					'<?=$_SESSION['nonce'];?>'
+				);
 			});
 		</script>
 	</body>

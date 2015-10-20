@@ -1,14 +1,14 @@
 <?php
 
-if (!is_file(__DIR__ . '/vendor/autoload.php'))
+if (!is_file(__DIR__ . '/../vendor/autoload.php'))
 	die('Please install sample dependencies with \'composer install\'');
 //using composer's autoloader
-require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
-if (!is_file(__DIR__ . '/../settings.php'))
-	die('Please copy ../settings.php.dist to ../settings.php');
+if (!is_file(__DIR__ . '/../../settings.php'))
+	die('Please copy ../../settings.php.dist to ../../settings.php');
 //requiring client configuration
-require_once __DIR__ . '/../settings.php';
+require_once __DIR__ . '/../../settings.php';
 
 if (!is_file(__DIR__ . '/facebook-settings.php'))
 	die('Please copy facebook-settings.php.dist to facebook-settings.php');
@@ -99,7 +99,7 @@ if (!empty($_GET['code'])) {
 		$response = $api->fetch('GET', "/task/{$username}/{$taskId}");
 	} while ($response['info']['running']);
 
-	//retrieves user profile
+	//retrieves user's profile
 	//more info: https://veridu.com/wiki/Profile_Resource
 	$response = $api->fetch('GET', "/profile/{$username}");
 
@@ -113,6 +113,5 @@ if (!empty($_GET['code'])) {
 	$url = $facebookService->getAuthorizationUri();
 	header('Location: ' . $url);
 } else {
-	$url = $currentUri->getRelativeUri() . '?go=go';
-	echo "<a href='$url'>Login with Facebook!</a>";
+	printf('<a href="%s?go=go">Login with Facebook!</a>', $currentUri->getRelativeUri());
 }

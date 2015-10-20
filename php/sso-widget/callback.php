@@ -10,7 +10,7 @@ if (!is_file(__DIR__ . '/../settings.php'))
 //requiring client configuration
 require_once __DIR__ . '/../settings.php';
 
-
+//PHP's session start
 session_start();
 
 //request nonce checking
@@ -30,14 +30,16 @@ if (empty($_GET['veridu_sign'])) {
 	die('Invalid request');
 }
 $parameters = array();
-foreach ($_GET as $key => $value)
-	if (strncmp($key, 'veridu_', 7) == 0)
+foreach ($_GET as $key => $value) {
+	if (strncmp($key, 'veridu_', 7) == 0) {
 		$parameters[$key] = $value;
+	}
+}
 $hash = $parameters['veridu_hash'];
 $sign = $parameters['veridu_sign'];
 unset($parameters['veridu_sign'], $parameters['veridu_hash']);
 ksort($parameters);
-if ($sign !== hash_hmac($hash, http_build_query($parameters, '', '&', PHP_QUERY_RFC1738), $config['secret'])) {
+if ($sign !== hash_hmac($hash, http_build_query($parameters, '', '&', PHP_QUERY_RFC1738), $veridu['secret'])) {
 	die('Invalid signature');
 }
 
@@ -48,13 +50,23 @@ $username = filter_var($_GET['veridu_id'], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_
 $provider = filter_var($_GET['veridu_provider'], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW | FILTER_FLAG_NO_ENCODE_QUOTES);
 
 //profile's name
-if (empty($_GET['veridu_name']))
-	$name = '';
-else
+if (empty($_GET['veridu_name'])) {
+	$name = 'n/a';
+} else {
 	$name = filter_var($_GET['veridu_name'], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW | FILTER_FLAG_NO_ENCODE_QUOTES);
+}
 
 //profile's email
-if (empty($_GET['veridu_email']))
-	$email = '';
-else
+if (empty($_GET['veridu_email'])) {
+	$email = 'n/a';
+} else {
 	$email = filter_var($_GET['veridu_email'], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW | FILTER_FLAG_NO_ENCODE_QUOTES);
+}
+
+//sample data output
+echo '<pre>', PHP_EOL;
+echo 'Username: ', $username, PHP_EOL;
+echo 'Provider: ', $provider, PHP_EOL;
+echo 'Name: ', $name, PHP_EOL;
+echo 'E-mail: ', $email, PHP_EOL;
+echo '</pre>', PHP_EOL;

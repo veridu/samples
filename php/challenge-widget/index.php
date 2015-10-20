@@ -66,6 +66,13 @@ $session->assign($username);
 						setup: ['facebook','linkedin','paypal','amazon','twitter','google','instagram','yahoo','email','sms','spotafriend','cpr','nemid','personal','document']
 					}
 				);
+				$(document).on('VeriduEvent', function (event, data) {
+					if (data.eventname === 'UserProfile') {
+						if (typeof console !== 'undefined') {
+							console.log(data.user, data.profile);
+						}
+					}
+				});
 		</script>
 	</body>
 </html>

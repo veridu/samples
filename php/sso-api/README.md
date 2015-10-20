@@ -5,8 +5,8 @@ This sample uses the [PHP-SDK](https://github.com/veridu/veridu-php) to integrat
 
 ## Files
  * sso-api/composer.json: dependency list
- * sso-api/facebook-settings.php.dist: distribution settings file for Facebook application (copy this file to facebook-settings.php)
- * sso-api/index.php: entry point for the single sign on process
+ * sso-api/oAuth1/: oAuth1 integration sample
+ * sso-api/oAuth2/: oAuth2 integration sample
  * settings.php.dist: distribution settings file (copy this file to settings.php)
 
 ## Requirements
@@ -27,13 +27,7 @@ $ php composer.phar install
 ```
 
 ## Starting Application
-Follow the instructions below to start the sample application using PHP's built-in server.
-```bash
-$ cd sso-api/
-$ php -S 127.0.0.1:8080
-```
-
-On your webbrowser navigate to [http://127.0.0.1:8080/](http://127.0.0.1:8080/).
+Please refer to `oAuth1/` and `oAuth2/` folders for specific instructions.
 
 ## Help!
 If you have more questions, you can find more details on the following links:

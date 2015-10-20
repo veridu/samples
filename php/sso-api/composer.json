@@ -1,6 +1,6 @@
 {
 	"require": {
-		"lusitanian/oauth": "0.5.*",
+		"lusitanian/oauth": "0.8.*",
 		"veridu/veridu-php": "0.4.*"
 	}
 }

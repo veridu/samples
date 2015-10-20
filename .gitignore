@@ -2,12 +2,15 @@
 php/settings.php
 
 #ignore local challenge-api settings file
-php/challenge-api/facebook-settings.php
+php/challenge-api/oAuth1/twitter-settings.php
+php/challenge-api/oAuth2/facebook-settings.php
 
 #ignore local sso-api settings file
-php/sso-api/facebook-settings.php
+php/sso-api/oAuth1/twitter-settings.php
+php/sso-api/oAuth2/facebook-settings.php
 
 #ignore composer's vendor folder
+php/background-check/vendor/
 php/challenge-api/vendor/
 php/challenge-widget/vendor/
 php/sso-api/vendor/

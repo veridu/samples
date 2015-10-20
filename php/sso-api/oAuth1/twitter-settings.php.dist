@@ -1,0 +1,18 @@
+<?php
+
+$twitter = array(
+	'key' => '',
+	'secret' => '',
+	//Hosted Application ID
+	//more info: https://veridu.com/wiki/Application_Resource
+	'appid' => ''
+);
+
+if (empty($twitter['key']))
+	die('Please insert proper $twitter[\'key\'] configuration in ' . __FILE__);
+
+if (empty($twitter['secret']))
+	die('Please insert proper $twitter[\'secret\'] configuration in ' . __FILE__);
+
+if (empty($twitter['appid']))
+	die('Please insert proper $twitter[\'appid\'] configuration in ' . __FILE__);

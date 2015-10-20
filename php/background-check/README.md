@@ -1,12 +1,11 @@
-# Challenge API Code Sample
-Challenge an identity during a verification process.
+# Background Check API Code Sample
+Traditional Background Check based on Credit data.
 
-This sample uses the [PHP-SDK](https://github.com/veridu/veridu-php) to create a challenge process.
+This sample uses the [PHP-SDK](https://github.com/veridu/veridu-php) to integrate with the background-check.
 
 ## Files
- * challenge-api/composer.json: dependency list
- * challenge-api/oAuth1/: oAuth1 integration sample
- * challenge-api/oAuth2/: oAuth2 integration sample
+ * background-check/composer.json: dependency list
+ * background-check/index.php: entry point for the background-check process
  * settings.php.dist: distribution settings file (copy this file to settings.php)
 
 ## Requirements
@@ -22,17 +21,22 @@ $ curl -sS https://getcomposer.org/installer | php
 ## Installing dependencies
 Follow the instructions bellow to install project depencies.
 ```bash
-$ cd challenge-api/
+$ cd background-check/
 $ php composer.phar install
 ```
 
 ## Starting Application
-Please refer to `oAuth1/` and `oAuth2/` folders for specific instructions.
+Follow the instructions below to start the sample application using PHP's built-in server.
+```bash
+$ cd background-check/
+$ php -S 127.0.0.1:8080
+```
+
+On your webbrowser navigate to [http://127.0.0.1:8080/](http://127.0.0.1:8080/).
 
 ## Help!
 If you have more questions, you can find more details on the following links:
  * [What do I need o do before I can call the API](https://veridu.com/wiki/What_do_I_need_to_do_before_I_can_call_the_API)
  * [How do I use the PHP SDK?](https://veridu.com/wiki/How_do_I_use_the_PHP_SDK%3F)
- * [How do I retrieve a user's Verified Profile?](https://veridu.com/wiki/How_do_I_retrieve_a_user%27s_Verified_Profile%3F)
- * [Provider API EndPoint](https://veridu.com/wiki/Provider_Resource)
- * [Task API EndPoint](https://veridu.com/wiki/Task_Resource)
+ * [How do I use my existing SSO Access Token to score a user?](https://veridu.com/wiki/How_do_I_use_my_existing_SSO_Access_Token_to_score_a_user%3F)
+ * [SSO API EndPoint](https://veridu.com/wiki/SSO_Resource)
