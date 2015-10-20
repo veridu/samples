@@ -38,5 +38,5 @@ On your webbrowser navigate to [http://127.0.0.1:8080/](http://127.0.0.1:8080/).
 If you have more questions, you can find more details on the following links:
  * [What do I need o do before I can call the API](https://veridu.com/wiki/What_do_I_need_to_do_before_I_can_call_the_API)
  * [How do I use the PHP SDK?](https://veridu.com/wiki/How_do_I_use_the_PHP_SDK%3F)
- * [How do I use my existing SSO Access Token to score a user?](https://veridu.com/wiki/How_do_I_use_my_existing_SSO_Access_Token_to_score_a_user%3F)
- * [SSO API EndPoint](https://veridu.com/wiki/SSO_Resource)
+ * [How do I create a Background Check?](https://veridu.com/wiki/How_do_I_create_a_Background_Check%3F)
+ * [Check API EndPoint](https://veridu.com/wiki/Check_Resource)
