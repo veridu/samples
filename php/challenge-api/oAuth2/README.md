@@ -1,6 +1,8 @@
 # Challenge API Code Sample (oAuth2)
 Challenge an identity during a verification process using an oAuth2 provider.
 
+This sample uses the [PHP-SDK](https://github.com/veridu/veridu-php) to integrate the Challenge.
+
 ## Files
  * challenge-api/oAuth2/facebook-settings.php.dist: distribution settings file for Facebook application (copy this file to challenge-api/facebook-settings.php)
  * challenge-api/oAuth2/index.php: entry point for the challenge process

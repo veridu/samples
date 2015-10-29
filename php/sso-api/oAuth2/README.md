@@ -2,7 +2,7 @@
 Single Sign On+ extends the regular SSO integrations with additional identity scores.
 Code Sample for oAuth2 provider.
 
-This sample uses the [PHP-SDK](https://github.com/veridu/veridu-php) to integrate with the SSO+.
+This sample uses the [PHP-SDK](https://github.com/veridu/veridu-php) to integrate the SSO+.
 
 ## Files
  * sso-api/oAuth2/facebook-settings.php.dist: distribution settings file for Facebook application (copy this file to facebook-settings.php)

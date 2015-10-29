@@ -1,6 +1,12 @@
 # Challenge API Code Sample (oAuth1)
 Challenge an identity during a verification process using an oAuth1 provider.
 
+This sample uses the [PHP-SDK](https://github.com/veridu/veridu-php) to integrate the Challenge.
+
+## Heads up!
+To use this sample you need a hosted application set with Veridu.
+You can do it through the [API](https://veridu.com/wiki/Application_Resource) or request it by e-mail.
+
 ## Files
  * challenge-api/oAuth1/twitter-settings.php.dist: distribution settings file for Twitter application (copy this file to challenge-api/twitter-settings.php)
  * challenge-api/oAuth1/index.php: entry point for the challenge process

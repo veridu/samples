@@ -2,7 +2,11 @@
 Single Sign On+ extends the regular SSO integrations with additional identity scores.
 Code Sample for oAuth1 provider.
 
-This sample uses the [PHP-SDK](https://github.com/veridu/veridu-php) to integrate with the SSO+.
+This sample uses the [PHP-SDK](https://github.com/veridu/veridu-php) to integrate the SSO+.
+
+## Heads up!
+To use this sample you need a hosted application set with Veridu.
+You can do it through the [API](https://veridu.com/wiki/Application_Resource) or request it by e-mail.
 
 ## Files
  * sso-api/oAuth1/twitter-settings.php.dist: distribution settings file for Twitter application (copy this file to twitter-settings.php)
