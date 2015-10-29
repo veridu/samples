@@ -1,8 +1,11 @@
 <?php
 
 $veridu = array(
+	//API Credentials
+	//Create at https://dashboard.veridu.com
 	'client' => '',
 	'secret' => '',
+	//more info: https://veridu.com/wiki/Version
 	'version' => '0.3'
 );
 
