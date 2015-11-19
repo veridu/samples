@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<title>polling sample</title>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript">
+			VERIDU = {
+				//API Credentials (Key)
+				//Create at https://dashboard.veridu.com
+				client: '',
+				//Session Token
+				//more info: https://veridu.com/wiki/Session_Resource
+				session: '',
+				// Change this to your system's user id
+				username: 'unique-user-id',
+				//more info: https://veridu.com/wiki/Version
+				version: '0.3'
+			};
+		</script>
+	</head>
+	<body>
+		<div class="container">
+			<h1>Polling sample</h1>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Profile</h3>
+				</div>
+				<div class="panel-body">
+					<p>
+						<strong>Overall Score:</strong> <span id="overallScore">n/a</span>
+					</p>
+					<p>
+						<strong>Name:</strong> <span id="profileName">n/a</span> (<span id="nameScore">n/a</span>)
+					</p>
+					<p>
+						<strong>Birth:</strong> <span id="profileBirth">n/a</span> (<span id="birthScore">n/a</span>)
+					</p>
+					<p>
+						<strong>Gender:</strong> <span id="profileGender">n/a</span> (<span id="genderScore">n/a</span>)
+					</p>
+					<p>
+						<strong>Location:</strong> <span id="profileLocation">n/a</span> (<span id="locationScore">n/a</span>)
+					</p>
+					<p>
+						<strong>E-mail:</strong> <span id="profileEmail">n/a</span> (<span id="emailScore">n/a</span>)
+					</p>
+					<p>
+						<strong>Phone:</strong> <span id="profilePhone">n/a</span> (<span id="phoneScore">n/a</span>)
+					</p>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$(function () {
+				var failureCount = 0;
+				function update() {
+					$.ajax({
+						crossDomain: true,
+						dataType: 'json',
+						headers: {
+							'Veridu-Client': VERIDU.client,
+							'Veridu-Session': VERIDU.session,
+						},
+						timeout: 120000,
+						type: 'GET',
+						url: 'https://api.veridu.com/' + VERIDU.version + '/profile/' + VERIDU.username
+					})
+						.done(function (json) {
+							var $alert = $('div.alert');
+							// Removes connectivity alert
+							if ($alert.length)
+								$alert.fadeOut(function () {
+									$(this).remove();
+								});
+							// Resets failure counter
+							failureCount = 0;
+							// Checks for profile availablity
+							if (json.user) {
+								// Overall Score
+								$('#overallScore').text(Math.round(json.user.overall * 100) + '%');
+
+								// Profile Name
+								if (json.user.name) {
+									$('#profileName').html(json.user.name.value);
+									$('#nameScore').text(Math.round(json.user.name.score * 100) + '%');
+								}
+
+								// Profile Birth
+								if (json.user.birth) {
+									$('#profileBirth').html(json.user.birth.value);
+									$('#birthScore').text(Math.round(json.user.birth.score * 100) + '%');
+								}
+
+								// Profile Gender
+								if (json.user.gender) {
+									$('#profileGender').html(json.user.gender.value);
+									$('#genderScore').text(Math.round(json.user.gender.score * 100) + '%');
+								}
+
+								// Profile Location
+								if (json.user.location) {
+									$('#profileLocation').html(json.user.location.value);
+									$('#locationScore').text(Math.round(json.user.location.score * 100) + '%');
+								}
+
+								// Profile E-mail
+								if (json.user.email) {
+									$('#profileEmail').html(json.user.email.value);
+									$('#emailScore').text(Math.round(json.user.email.score * 100) + '%');
+								}
+
+								// Profile Phone
+								if (json.user.phone) {
+									$('#profilePhone').html(json.user.phone.value);
+									$('#phoneScore').text(Math.round(json.user.phone.score * 100) + '%');
+								}
+							}
+							setTimeout(update, 1000);
+						})
+						.fail(function (jqXHR) {
+							// Offline Error
+							if (jqXHR.readyState != 4) {
+								if ($('div.alert').length == 0) {
+									failureCount++;
+									// Avoid displaying an alert message for transient connection errors
+									if (failureCount > 3)
+										$('<div class="alert alert-warning"><strong>Warning!</strong> You seem to be offline. Trying again..</div>').fadeIn().insertAfter('h1');
+								}
+							} else {
+								var $alert = $('div.alert');
+								// Removes connectivity alert
+								if ($alert.length)
+									$alert.fadeOut(function () {
+										$(this).remove();
+									});
+								// Resets failure counter
+								failureCount = 0;
+							}
+							setTimeout(update, 2000);
+						});
+				}
+				update();
+			});
+		</script>
+	</body>
+</html>

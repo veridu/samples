@@ -90,8 +90,8 @@ if (!empty($_GET['code'])) {
 	print_r($response);
 
 	/*
-		Pooling API to wait until data analysis is done
-		Note: can be done via WebHook without pooling
+		Polling API to wait until data analysis is done
+		Note: can be done via WebHook without polling
 	*/
 	$taskId = $response['task_id'];
 	do {

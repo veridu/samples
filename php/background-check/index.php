@@ -72,8 +72,8 @@ $response = $api->signedFetch(
 print_r($response);
 
 /*
-	Pooling API to wait until check is done
-	Note: can be done via WebHook without pooling
+	Polling API to wait until check is done
+	Note: can be done via WebHook without polling
 */
 $taskId = $response['task_id'];
 do {
