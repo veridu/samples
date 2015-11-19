@@ -7,7 +7,7 @@ This sample uses the [PHP-SDK](https://github.com/veridu/veridu-php) to integrat
  * [sso-api/composer.json](composer.json): dependency list
  * [sso-api/oAuth1/](oAuth1/): oAuth1 integration sample
  * [sso-api/oAuth2/](oAuth2/): oAuth2 integration sample
- * [settings.php.dist](settings.php.dist): distribution settings file (copy this file to settings.php)
+ * [settings.php.dist](../settings.php.dist): distribution settings file (copy this file to settings.php)
 
 ## Requirements
  * [Composer](https://getcomposer.org/): Dependency manager for PHP
