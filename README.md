@@ -1,8 +1,9 @@
 # samples
 This repository contains sample integration and interface codes for Identity Challenge and Single Sign On+.
 
-Integration Samples come in two flavors:
+Integration Samples come in three flavors:
  * **API**: Integration straight into the API, making it more flexible to customize UI/UX at the cost of a bit more development work.
+ * **Gateway**: Integration using a Veridu hosted integration, the perfect balance between UI/UX flexibility and integration effort.
  * **Widget**: Integration using Widget Library, making it really easy to integrate at the cost of a less flexible UI/UX.
 
 Interface Samples cover different usage needs, mostly around creating flexible UI/UX.
