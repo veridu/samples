@@ -6,10 +6,6 @@ Integration Samples come in three flavors:
  * **Gateway**: Integration using a Veridu hosted integration, the perfect balance between UI/UX flexibility and integration effort.
  * **Widget**: Integration using Widget Library, making it really easy to integrate at the cost of a less flexible UI/UX.
 
-Interface Samples cover different usage needs, mostly around creating flexible UI/UX.
-
-Integration samples are currently written in [PHP](http://php.net) and interface samples are currently written in JavaScript.
-
 Check the README on each folders for more details.
 
 ## Help!
