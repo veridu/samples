@@ -10,20 +10,6 @@ if (!is_file(__DIR__ . '/../settings.php'))
 //requiring client configuration
 require_once __DIR__ . '/../settings.php';
 
-function getUrl() {
-	 if (isset($_SERVER['HTTPS']) && filter_var($_SERVER['HTTPS'], FILTER_VALIDATE_BOOLEAN)) {
-		$schema = 'https';
-	} else {
-		$schema = 'http';
-	}
-	return sprintf(
-		'%s://%s%s',
-		$schema,
-		$_SERVER['HTTP_HOST'],
-		$_SERVER['REQUEST_URI']
-	);
-}
-
 session_start();
 
 if (empty($_GET['token'])) {
