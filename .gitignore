@@ -5,6 +5,9 @@ php/settings.php
 php/challenge-api/oAuth1/twitter-settings.php
 php/challenge-api/oAuth2/facebook-settings.php
 
+#ignore local challenge-widget settings file
+python/challenge-widget/settings.py
+
 #ignore local sso-api settings file
 php/sso-api/oAuth1/twitter-settings.php
 php/sso-api/oAuth2/facebook-settings.php
@@ -16,3 +19,6 @@ php/challenge-widget/vendor/
 php/gateway-signed/vendor/
 php/sso-api/vendor/
 php/sso-widget/vendor/
+
+#ignore .pyc files
+*.pyc
