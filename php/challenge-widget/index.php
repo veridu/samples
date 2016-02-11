@@ -37,7 +37,7 @@ $session->assign($username);
 
 ?>
 <!DOCTYPE html>
-<html lang='en-us'>
+<html lang="en-us">
 	<head>
 		<meta charset="utf-8">
 		<!-- Loading the jQuery Library (required by Widget Library) -->
@@ -63,7 +63,7 @@ $session->assign($username);
 					$('#widget'),
 					'<?=$username;?>',
 					{
-						setup: ['facebook','linkedin','paypal','amazon','twitter','google','instagram','yahoo','email','sms','spotafriend','cpr','nemid','personal','document']
+						setup: ['facebook','linkedin','paypal','amazon','twitter','google','instagram','yahoo','email','sms','spotafriend','personal','document']
 					}
 				);
 				$(document).on('VeriduEvent', function (event, data) {
