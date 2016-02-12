@@ -1,6 +1,9 @@
 #ignore local settings file
 php/settings.php
 
+#ignore local background-check settings file
+python/background-check/settings.py
+
 #ignore local challenge-api settings file
 php/challenge-api/oAuth1/twitter-settings.php
 php/challenge-api/oAuth2/facebook-settings.php
