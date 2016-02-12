@@ -26,13 +26,13 @@ session.assign(username)
 
 # mimics form data
 data = {
-    "firstname": "Juan",
-    "lastname": "Pablo",
-    "birthyear": "01",
-    "birthmonth": "01",
-    "birthday": "1979",
-    "address1": "1 Seymour Park Road",
-    "postcode": "SL7 3ER"
+    "firstname": "",
+    "lastname": "",
+    "birthyear": "",
+    "birthmonth": "",
+    "birthday": "",
+    "address1": "",
+    "postcode": ""
 }
 
 # sends the form data
