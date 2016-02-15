@@ -45,7 +45,8 @@ if (!empty($_GET['code'])) {
 	// This was a callback request from facebook, get the token
 	$token = $facebookService->requestAccessToken($_GET['code']);
 
-	// Change this to your system's user id
+	// Unique username assigned by your system
+	// more info: https://veridu.com/wiki/User_ID
 	$username = 'unique-user-id';
 
 	//Session SDK instantiation

@@ -1,5 +1,10 @@
+# API Credentials
+# Create at https://dashboard.veridu.com
 VeriduSettings = {
-	"key": "",
-	"secret": "",
-	"version": "0.3"
+    # API Key (from https://dashboard.veridu.com/api)
+    "key": "",
+    # API Secret (from https://dashboard.veridu.com/api)
+    "secret": "",
+    # more info: https://veridu.com/wiki/Version
+    "version": "0.3"
 }

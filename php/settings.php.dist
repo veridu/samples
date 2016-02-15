@@ -1,9 +1,11 @@
 <?php
 
+// API Credentials
+// Create at https://dashboard.veridu.com
 $veridu = array(
-	//API Credentials
-	//Create at https://dashboard.veridu.com
+	// API Key (from https://dashboard.veridu.com/api)
 	'client' => '',
+	// API Secret (from https://dashboard.veridu.com/api)
 	'secret' => '',
 	//more info: https://veridu.com/wiki/Version
 	'version' => '0.3'

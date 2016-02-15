@@ -22,8 +22,12 @@ if (empty($_GET['token'])) {
 	// set current url as callback url
 	$redirect->setCallbackUrl((string) $uri);
 
-	// generate redirect url with appended signature (username is optional)
-	$url = $redirect->generateUrl('some-unique-user-id');
+	// Unique username assigned by your system (this is an optional parameter for $redirect->generateUrl)
+	// more info: https://veridu.com/wiki/User_ID
+	$username = 'unique-user-id';
+
+	// generate redirect url with appended signature (username parameter is optional)
+	$url = $redirect->generateUrl($username);
 
 	// store redirect token id for callback validation
 	$_SESSION['tokenId'] = $redirect->getTokenId();

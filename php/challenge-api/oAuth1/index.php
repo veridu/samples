@@ -47,7 +47,8 @@ if (!empty($_GET['oauth_token'])) {
 		$twitterToken->getRequestTokenSecret()
 	);
 
-	// Change this to your system's user id
+	// Unique username assigned by your system
+	// more info: https://veridu.com/wiki/User_ID
 	$username = 'unique-user-id';
 
 	//Session SDK instantiation

@@ -9,7 +9,8 @@ from Veridu.SDK.Session import Session
 # importing client configuration
 from settings import VeriduSettings
 
-# Change this to your system's user id
+# Unique username assigned by your system
+# more info: https://veridu.com/wiki/User_ID
 username = "unique-user-id";
 
 # API and Session SDK instantiation
