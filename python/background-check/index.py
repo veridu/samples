@@ -42,7 +42,7 @@ response = api.fetch("GET", "personal/%s" % username)
 if response["state"]:
     api.fetch("PUT", "personal/%s" % username, data)
 else:
-    api.fetch("POST", "persoanl/%s" % username, data)
+    api.fetch("POST", "personal/%s" % username, data)
 
 response = api.signedFetch(
     "POST",
