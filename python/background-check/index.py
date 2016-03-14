@@ -55,7 +55,7 @@ response = api.signedFetch(
 # prints API response
 # for example: {'status': True, 'task_id': 5061}
 # more details: https://veridu.com/wiki/Check_Resource#How_to_create_a_new_Background_Check
-print response
+print(response)
 
 # Polling API to wait until check is done
 # Note: can be done via WebHook without polling
@@ -71,4 +71,4 @@ response = api.signedFetch("GET", "check/%s/tracesmart" % username)
 
 # prints API response
 # more details: https://veridu.com/wiki/Check_Resource#How_to_retrieve_data_from_one_provider
-print response
+print(response)

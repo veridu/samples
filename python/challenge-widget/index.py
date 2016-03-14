@@ -25,7 +25,7 @@ session.create(False)
 # more info: https://veridu.com/wiki/User_Resource
 session.assign(username)
 
-print """
+print("""
 <!DOCTYPE html>
 <html lang="en-us">
     <head>
@@ -66,4 +66,4 @@ print """
         </script>
     </body>
 </html>
-""" % {"username": username, "client": VeriduSettings["key"], "version": VeriduSettings["version"], "token": session.getToken()}
+""" % {"username": username, "client": VeriduSettings["key"], "version": VeriduSettings["version"], "token": session.getToken()})
