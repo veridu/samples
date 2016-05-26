@@ -1,7 +1,7 @@
 # Challenge API Code Sample (oAuth1)
 Challenge an identity during a verification process using an oAuth1 provider.
 
-This sample uses the [PHP-SDK](https://github.com/veridu/veridu-php) to integrate the Challenge.
+This sample uses the [PHP-SDK](https://github.com/veridu/veridu-php-1.0) to integrate the Challenge.
 
 ## Heads up!
 To use this sample you need a hosted application set with Veridu.

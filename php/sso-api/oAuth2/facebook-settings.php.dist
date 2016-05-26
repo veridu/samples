@@ -2,7 +2,8 @@
 
 $facebook = array(
 	'key' => '',
-	'secret' => ''
+	'secret' => '',
+	'appid' => ''
 );
 
 if (empty($facebook['key']))

@@ -1,6 +1,0 @@
-{
-	"require": {
-		"veridu/gateway-php": "0.1.*",
-		"league/uri": "4.0.*"
-	}
-}
