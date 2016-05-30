@@ -1,17 +1,14 @@
 package com.veridu.samples.sso.oauth1;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import com.veridu.API;
 import com.veridu.Utils;
+import com.veridu.exceptions.SDKException;
 
 public class Oauth1 {
     public static void main(String[] args) {
@@ -25,7 +22,6 @@ public class Oauth1 {
             String key = config.get("KEY").toString();
             String secret = config.get("SECRET").toString();
             String version = config.get("VERSION").toString();
-            String username = config.get("USERNAME").toString();
 
             // get Twitter configuration values
             JSONObject twitter = utils.readConfig("twitter.json");
@@ -69,53 +65,12 @@ public class Oauth1 {
 
             System.out.println(json);
 
-        } catch (Exception ex) {
+        } catch (SDKException ex) {
             System.out.println(ex.getMessage());
-        }
-
-    }
-
-    private JSONObject readDefaultConfigFile() throws ParseException {
-        InputStream is = this.getClass().getResourceAsStream("/config.json");
-        BufferedReader bf = new BufferedReader(new InputStreamReader(is));
-        StringBuilder configString = new StringBuilder();
-        String line;
-        try {
-            line = bf.readLine();
-            while (line != null) {
-                configString.append(line);
-                line = bf.readLine();
-            }
-            bf.close();
-        } catch (IOException e) {
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-
-        JSONParser parser = new JSONParser();
-        JSONObject json = (JSONObject) parser.parse(configString.toString());
-
-        return json;
-    }
-
-    private JSONObject readTwitterConfigFile() throws ParseException {
-        InputStream is = this.getClass().getResourceAsStream("/twitter.json");
-        BufferedReader bf = new BufferedReader(new InputStreamReader(is));
-        StringBuilder configString = new StringBuilder();
-        String line;
-        try {
-            line = bf.readLine();
-            while (line != null) {
-                configString.append(line);
-                line = bf.readLine();
-            }
-            bf.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        JSONParser parser = new JSONParser();
-        JSONObject json = (JSONObject) parser.parse(configString.toString());
-
-        return json;
     }
 }

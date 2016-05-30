@@ -1,18 +1,15 @@
 package com.veridu.samples.sso.oauth2;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 //importing veridu api
 import java.util.HashMap;
 
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import com.veridu.API;
 import com.veridu.Utils;
+import com.veridu.exceptions.SDKException;
 
 public class Oauth2 {
     public static void main(String[] args) {
@@ -27,7 +24,6 @@ public class Oauth2 {
             String key = config.get("KEY").toString();
             String secret = config.get("SECRET").toString();
             String version = config.get("VERSION").toString();
-            String username = config.get("USERNAME").toString();
 
             // get Twitter configuration values
             JSONObject facebook = utils.readConfig("facebook.json");
@@ -52,8 +48,7 @@ public class Oauth2 {
             // data
             HashMap<String, String> data = new HashMap<>();
             // Token is result of oAuth handshake
-            data.put("token",
-                    "CAAEO02ZBeZBwMBAFjIhMOuKgwRnecTQoJSBJDb3iPMNBvjc2VaZA7VQQ5MAhKAs77Yh4gZB13M3Mw4TnOkFA7R6fG1YMcwatddp1blKdRiPKETd4hZCZBFebT3ioXbwTiy4JKjFF89RDzMkpHzuD1VIM4xQGDKsDBpilX9cW4EX8gbJTOnlYOByaur0TaDqBFdj1fVZCutAFjvT4YedX7yU");
+            data.put("token", "your-token-goes-here");
 
             // Creates oAuth sso using facebook as provider
             json = api.getSSO().createOauth1("facebook", data);
@@ -74,53 +69,12 @@ public class Oauth2 {
             // prints json response
             System.out.println(json);
 
-        } catch (Exception ex) {
+        } catch (SDKException ex) {
             System.out.println(ex.getMessage());
-        }
-
-    }
-
-    private JSONObject readDefaultConfigFile() throws ParseException {
-        InputStream is = this.getClass().getResourceAsStream("/config.json");
-        BufferedReader bf = new BufferedReader(new InputStreamReader(is));
-        StringBuilder configString = new StringBuilder();
-        String line;
-        try {
-            line = bf.readLine();
-            while (line != null) {
-                configString.append(line);
-                line = bf.readLine();
-            }
-            bf.close();
-        } catch (IOException e) {
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-
-        JSONParser parser = new JSONParser();
-        JSONObject json = (JSONObject) parser.parse(configString.toString());
-
-        return json;
-    }
-
-    private JSONObject readFacebookConfigFile() throws ParseException {
-        InputStream is = this.getClass().getResourceAsStream("/facebook.json");
-        BufferedReader bf = new BufferedReader(new InputStreamReader(is));
-        StringBuilder configString = new StringBuilder();
-        String line;
-        try {
-            line = bf.readLine();
-            while (line != null) {
-                configString.append(line);
-                line = bf.readLine();
-            }
-            bf.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        JSONParser parser = new JSONParser();
-        JSONObject json = (JSONObject) parser.parse(configString.toString());
-
-        return json;
     }
 }
