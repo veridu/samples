@@ -1,7 +1,7 @@
 # Single Sign On+ API Code Sample (oAuth1)
 Extended SSO with identity scores using an oAuth1 provider.
 
-This sample uses the [PHP-SDK](https://github.com/veridu/veridu-php) to integrate the SSO+.
+This sample uses the [PHP-SDK](https://github.com/veridu/veridu-php-1.0) to integrate the SSO+.
 
 ## Heads up!
 To use this sample you need a hosted application set with Veridu.

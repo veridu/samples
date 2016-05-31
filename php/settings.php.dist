@@ -8,7 +8,10 @@ $veridu = array(
 	// API Secret (from https://dashboard.veridu.com/api)
 	'secret' => '',
 	//more info: https://veridu.com/wiki/Version
-	'version' => '0.3'
+	'version' => '0.3', 
+	// Unique username assigned by your system
+	// more info: https://veridu.com/wiki/User_ID
+	'username' => 'unique-user-id'
 );
 
 if (empty($veridu['client']))

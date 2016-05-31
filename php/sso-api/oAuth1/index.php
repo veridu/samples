@@ -47,51 +47,35 @@ if (!empty($_GET['oauth_token'])) {
 		$twitterToken->getRequestTokenSecret()
 	);
 
-	//Session SDK instantiation
-	//more info: https://github.com/veridu/veridu-php
-	$session = new Veridu\SDK\Session(
-		new Veridu\SDK\API(
-			new Veridu\Common\Config(
-				$veridu['client'],
-				$veridu['secret'],
-				$veridu['version']
-			),
-			new Veridu\HTTPClient\CurlClient,
-			new Veridu\Signature\HMAC
-		)
-	);
-	$session->create(false);
-
-	$api = $session->getAPI();
-
-	$response = $api->signedFetch(
-		'POST',
-		'sso/twitter',
-		array(
-			'token' => $token->getAccessToken(),
-			'secret' => $token->getAccessTokenSecret(),
-			'appid' => $twitter['appid']
-		)
+	//Instantiates the API object
+	$api = Veridu\API::factory(
+		$veridu['client'],
+		$veridu['secret'],
+		$veridu['version']
 	);
 
 	/*
-		prints API response
-		for example: Array ( [status] => 1 [veridu_id] => 1 [veridu_provider] => twitter )
-		more details: https://veridu.com/wiki/SSO_Resource#How_to_do_a_social_single_sign_on
-	*/
-	print_r($response);
+	 * Creates new a read/write Veridu session
+	 * More info: https://veridu.com/wiki/SSO_Resource#How_to_do_a_social_single_sign_on
+	 */
 
-	//veridu_id is the user's unique id
-	$username = $response['veridu_id'];
+	$api->session->create(false);
 
-	//retrieves user's profile
-	//more info: https://veridu.com/wiki/Profile_Resource
-	$response = $api->fetch('GET', "/profile/{$username}");
+	$veridu_id = $api->sso->createOauth1("twitter", $token->getAccessToken(), $token->getAccessTokenSecret(), $twitter['appid']);
 
-	/*
-		prints API response
-		more details: https://veridu.com/wiki/Profile_Resource#How_to_retrieve_the_consolidated_profile_of_a_given_user
-	*/
+	//prints veridu_id (User's unique id)
+	print_r($veridu_id);
+
+	//assign the veridu_id for the current session
+	$api->user->create($veridu_id);
+
+	/* Retrieves user's profile
+	 * More info: https://veridu.com/wiki/Profile_Resource#How_to_retrieve_the_consolidated_profile_of_a_given_user
+	 */
+
+	$response = $api->profile->retrieve();
+
+	//prints response
 	print_r($response);
 
 } elseif ((!empty($_GET['go'])) && ($_GET['go'] === 'go')) {

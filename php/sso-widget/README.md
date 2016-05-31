@@ -11,7 +11,7 @@ This sample uses the [SSO Library](https://veridu.com/wiki/SSO_Library) to integ
 
 ## Requirements
  * [Composer](https://getcomposer.org/): Dependency manager for PHP
- * [PHP-SDK](https://github.com/veridu/veridu-php): Veridu's PHP SDK
+ * [PHP-SDK](https://github.com/veridu/veridu-php-1.0): Veridu's PHP SDK
  * [SSO Library](https://veridu.com/wiki/SSO_Library): Veridu's SSO Library
 
 ## Setup Steps

@@ -1,7 +1,7 @@
 # Background Check API Code Sample
 Traditional Background Check based on Credit data.
 
-This sample uses the [PHP-SDK](https://github.com/veridu/veridu-php) to integrate the background-check.
+This sample uses the [PHP-SDK](https://github.com/veridu/veridu-php-1.0) to integrate the background-check.
 
 ## Files
  * [background-check/composer.json](composer.json): dependency list

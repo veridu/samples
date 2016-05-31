@@ -10,7 +10,7 @@ This sample uses the [Widget Library](https://veridu.com/wiki/Widget_Library) to
 
 ## Requirements
  * [Composer](https://getcomposer.org/): Dependency manager for PHP
- * [PHP-SDK](https://github.com/veridu/veridu-php): Veridu's PHP SDK
+ * [PHP-SDK](https://github.com/veridu/veridu-php-1.0): Veridu's PHP SDK
  * [Widget Library](https://veridu.com/wiki/Widget_Library): Veridu's Widget Library
 
 ## Setup Steps

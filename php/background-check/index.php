@@ -10,33 +10,24 @@ if (!is_file(__DIR__ . '/../settings.php'))
 //requiring client configuration
 require_once __DIR__ . '/../settings.php';
 
-// Unique username assigned by your system
-// more info: https://veridu.com/wiki/User_ID
-$username = 'unique-user-id';
-
-//Session SDK instantiation
-//more info: https://github.com/veridu/veridu-php
-$session = new Veridu\SDK\Session(
-	new Veridu\SDK\API(
-		new Veridu\Common\Config(
-			$veridu['client'],
-			$veridu['secret'],
-			$veridu['version']
-		),
-		new Veridu\HTTPClient\CurlClient,
-		new Veridu\Signature\HMAC
-	)
+//Instantiate API object
+$api = \Veridu\API::factory(
+	$veridu['client'],
+	$veridu['secret'],
+	$veridu['version']
 );
 
-//creates new a read/write Veridu session
-//more info: https://veridu.com/wiki/Session_Resource
-$session->create(false);
-//assigns the fresh Veridu session to user
-//more info: https://veridu.com/wiki/User_Resource
-$session->assign($username);
+/*
+ * Creates new a read/write Veridu session
+ * More info: https://veridu.com/wiki/Session_Resource
+ */
+$api->session->create(false);
 
-//retrieve API SDK instance from Session SDK instance
-$api = $session->getAPI();
+/*
+ * Assigns the new user to the current session
+ * More info: https://veridu.com/wiki/User_Resource#How_to_create_a_new_user_entry_and_assign_it_to_the_current_session
+ */
+$api->user->create($veridu['username']);
 
 //mimics form data
 $data = array(
@@ -49,45 +40,47 @@ $data = array(
 	'postcode' => ''
 );
 
-//sends the form data
-//more info: https://veridu.com/wiki/Personal_Resource
-$response = $api->fetch('GET', "personal/{$username}");
-if ($response['state'])
-	$api->fetch('PUT', "personal/{$username}", $data);
+/*
+ * Sends the form data
+ * More info: https://veridu.com/wiki/Personal_Resource
+ */
+$response = $api->personal->details();
+
+if ($response)
+	$api->personal->update($data);
 else
-	$api->fetch('POST', "personal/{$username}", $data);
-
-$response = $api->signedFetch(
-	'POST',
-	"check/{$username}/tracesmart",
-	array(
-		'setup' => 'address,dob'
-	)
-);
+	$api->personal->create($data);
 
 /*
-	prints API response
-	for example: Array ( [status] => 1 [task_id] => 5061 )
-	more details: https://veridu.com/wiki/Check_Resource#How_to_create_a_new_Background_Check
-*/
-print_r($response);
+ * Creating background Check : Returns task_id as response
+ *
+ * @param provider (available: tracesmart)
+ * @param SETUP (Dob, passport, etc.), to concatenate setups, just use the |
+ *
+ * To see a list of setup, please visit: https://veridu.com/wiki/TraceSmart
+ */
+
+$task_id = $api->check->create('tracesmart', Veridu\API\Check::TRACESMART_ADDRESS | Veridu\API\Check::TRACESMART_DOB);
+//prints the task_id
+print_r($task_id);
 
 /*
-	Polling API to wait until check is done
-	Note: can be done via WebHook without polling
+ * Polling API to wait until check is done
+ * Note: can be done via WebHook without polling
 */
-$taskId = $response['task_id'];
 do {
 	usleep(500);
-	$response = $api->fetch('GET', "/task/{$username}/{$taskId}");
-} while ($response['info']['running']);
-
-//retrieves background check result
-//more info: https://veridu.com/wiki/Check_Resource
-$response = $api->signedFetch('GET', "/check/{$username}/tracesmart");
+	$response = $api->task->details($task_id);
+} while ($response['running']);
 
 /*
-	prints API response
-	more details: https://veridu.com/wiki/Check_Resource#How_to_retrieve_data_from_one_provider
+ * Retrieves background check result
+ * More info: https://veridu.com/wiki/Check_Resource
+ */
+$response = $api->check->listAll();
+
+/*
+ * Prints API response
+ * More details: https://veridu.com/wiki/Check_Resource#How_to_retrieve_data_from_one_provider
 */
 print_r($response);
