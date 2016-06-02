@@ -1,5 +1,5 @@
 {
 	"require": {
-		"veridu/veridu-php": "0.4.*"
+		"veridu/veridu-php": "1.0.*"
 	}
 }
