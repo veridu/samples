@@ -14,7 +14,6 @@ require_once __DIR__ . '/../settings.php';
 // more info: https://veridu.com/wiki/User_ID
 $username = 'unique-user-id';
 
-
 //Instantiate API object
 $api = Veridu\API::factory(
 	$veridu['client'],
@@ -64,7 +63,7 @@ $session = $storage->getSessionToken();
 				//more info: https://veridu.com/wiki/Challenge_Widget
 				veridu.Widget.challenge(
 					$('#widget'),
-					'<?=$veridu['username'];?>',
+					'<?=$username;?>',
 					{
 						setup: ['facebook','linkedin','paypal','amazon','twitter','google','instagram','yahoo','email','sms','spotafriend','personal','document']
 					}
