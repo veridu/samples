@@ -88,7 +88,7 @@ if (!empty($_GET['code'])) {
 
 	//retrieves user's profile
 	//more info: https://veridu.com/wiki/Profile_Resource
-	$response = $api->fetch('GET', '/profile/{$username}');
+	$response = $api->fetch('GET', "/profile/{$username}");
 
 	/*
 		prints API response
