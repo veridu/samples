@@ -51,67 +51,61 @@ if (!empty($_GET['oauth_token'])) {
 	// more info: https://veridu.com/wiki/User_ID
 	$username = 'unique-user-id';
 
-	//Session SDK instantiation
-	//more info: https://github.com/veridu/veridu-php
-	$session = new Veridu\SDK\Session(
-		new Veridu\SDK\API(
-			new Veridu\Common\Config(
-				$veridu['client'],
-				$veridu['secret'],
-				$veridu['version']
-			),
-			new Veridu\HTTPClient\CurlClient,
-			new Veridu\Signature\HMAC
-		)
-	);
 
-	//creates new a read/write Veridu session
-	//more info: https://veridu.com/wiki/Session_Resource
-	$session->create(false);
-	//assigns the fresh Veridu session to user
-	//more info: https://veridu.com/wiki/User_Resource
-	$session->assign($username);
-
-	//retrieve API SDK instance from Session SDK instance
-	$api = $session->getAPI();
-
-	//sends the access token
-	//more info: https://veridu.com/wiki/Provider_Resource
-	$response = $api->fetch(
-		'POST',
-		"provider/{$username}/twitter",
-		array(
-			'token' => $token->getAccessToken(),
-			'secret' => $token->getAccessTokenSecret(),
-			'appid' => $twitter['appid']
-		)
+	//Instantiates the API object
+	$api = Veridu\API::factory(
+		$veridu['client'],
+		$veridu['secret'],
+		$veridu['version']
 	);
 
 	/*
-		prints API response
-		for example: Array ( [status] => 1 [task_id] => 5061 )
-		more details: https://veridu.com/wiki/Provider_Resource#How_to_create_a_access_token_under_given_user_for_the_given_provider
-	*/
-	print_r($response);
+	 * Creates new a read/write Veridu session
+	 * More info: https://veridu.com/wiki/Session_Resource
+	 */
+	$api->session->create(false);
 
 	/*
-		Polling API to wait until data analysis is done
-		Note: can be done via WebHook without polling
+	 * Assigns the new user to the current session
+	 * More info: https://veridu.com/wiki/User_Resource#How_to_create_a_new_user_entry_and_assign_it_to_the_current_session
+	 */
+	$api->user->create($username);
+
+	/*
+	 * Creates a access token under given user for twitter
+	 *
+	 * @param provider (twitter)
+	 * @param token
+	 * @param secret
+	 * @param appid (not necessary)
+	 * More info: https://veridu.com/wiki/Provider_Resource#How_to_create_a_access_token_under_given_user_for_the_given_provider
 	*/
-	$taskId = $response['task_id'];
+	$task_id = $api->provider->createOAuth1(
+		'twitter',
+		$token->getAccessToken(),
+		$token->getAccessTokenSecret(),
+		$twitter['appid']
+	);
+
+	//prints task_id
+	print_r($task_id);
+
+	/*
+	 * Polling API to wait until data analysis is done
+	 * Note: can be done via WebHook without polling
+	*/
 	do {
 		usleep(500);
-		$response = $api->fetch('GET', "/task/{$username}/{$taskId}");
+		$response = $api->task->details($task_id);
 	} while ($response['info']['running']);
 
-	//retrieves user's profile
-	//more info: https://veridu.com/wiki/Profile_Resource
-	$response = $api->fetch('GET', "/profile/{$username}");
-
 	/*
-		prints API response
-		more details: https://veridu.com/wiki/Profile_Resource#How_to_retrieve_the_consolidated_profile_of_a_given_user
-	*/
+	 * Retrieves user's profile
+	 * More info: https://veridu.com/wiki/Profile_Resource#How_to_retrieve_the_consolidated_profile_of_a_given_user
+	 */
+	$response = $api->profile->retrieve();
+
+	//prints api response
 	print_r($response);
 
 } elseif ((!empty($_GET['go'])) && ($_GET['go'] === 'go')) {

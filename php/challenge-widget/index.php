@@ -14,28 +14,29 @@ require_once __DIR__ . '/../settings.php';
 // more info: https://veridu.com/wiki/User_ID
 $username = 'unique-user-id';
 
-//Session SDK instantiation
-//more info: https://github.com/veridu/veridu-php
-$session = new Veridu\SDK\Session(
-	new Veridu\SDK\API(
-		new Veridu\Common\Config(
-			$veridu['client'],
-			$veridu['secret'],
-			$veridu['version']
-		),
-		new Veridu\HTTPClient\CurlClient,
-		new Veridu\Signature\HMAC
-	)
+//Instantiate API object
+$api = Veridu\API::factory(
+	$veridu['client'],
+	$veridu['secret'],
+	$veridu['version']
 );
 
-//creates new a read/write Veridu session
-//(can be a read-only session if only displaying the profile widget)
-//more info: https://veridu.com/wiki/Session_Resource
-$session->create(false);
-//assigns the fresh Veridu session to target user
-//more info: https://veridu.com/wiki/User_Resource
-$session->assign($username);
+/*
+ * Creates new a read/write Veridu session
+ * More info: https://veridu.com/wiki/Session_Resource
+ */
+$api->session->create(false);
 
+/*
+ * Assigns the new user to the current session
+ * More info: https://veridu.com/wiki/User_Resource#How_to_create_a_new_user_entry_and_assign_it_to_the_current_session
+ */
+$api->user->create($username);
+
+//gets the storage object
+$storage = $api->getStorage();
+//gets session token
+$session = $storage->getSessionToken();
 ?>
 <!DOCTYPE html>
 <html lang="en-us">
@@ -53,7 +54,7 @@ $session->assign($username);
 			var //Widget instantiation
 				veridu = new Veridu({
 					client: '<?=$veridu['client'];?>',
-					session: '<?=$session->getToken();?>',
+					session: '<?=$session?>',
 					language: 'en-us',
 					country: 'uk',
 					version: '<?=$veridu['version'];?>'

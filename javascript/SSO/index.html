@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style>
+			body {
+				padding-top: 3em;
+			}
+			h2 {
+				padding-bottom: 1em;
+			}
+			.sample_sso {
+				text-align: center;
+			}
+			.profile {
+				margin-top: 5em;
+				position: relative;
+				text-align: justify;
+			}
+		</style>
+		<meta charset="utf-8">
+		<title>SSO sample</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	</head>
+	<body>
+		<div class="sample_sso">
+			<h2>Sample code for SSO</h2>
+			<!-- This is the copied and pasted SSO Widget that needs to be generated at the OLC config page using your API Key.
+			-->
+			<div id="veridu-sso_widget" class="sso_widget"></div>
+			<script src="https://widget.veridu.com/0.3/olc?key=key&name=name" charset="utf-8"></script>
+
+			<!-- To make API requests using Veridu SDK, you must download jquery library and the veridu sdk itself (both can be download via cdn as the example below)
+			-->
+			<script src="https://code.jquery.com/jquery-1.12.4.min.js" type="text/javascript"></script>
+			<script type="text/javascript" src="https://assets.veridu.com/0.3/sdk/veridu.min.js"></script>
+
+			<!-- Script to make requests and process information
+			-->
+			<script src="main.js"></script>
+
+			<!-- pre tag to print the json result of /profile endpoint request -->
+			<div class="container">
+				<pre id="profile" class="profile"></pre>
+			</div>
+		</div>
+	</body>
+</html>

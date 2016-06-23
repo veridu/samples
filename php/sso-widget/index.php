@@ -10,24 +10,23 @@ if (!is_file(__DIR__ . '/../settings.php'))
 //requiring client configuration
 require_once __DIR__ . '/../settings.php';
 
-
-//Session SDK instantiation
-//more info: https://github.com/veridu/veridu-php
-$session = new Veridu\SDK\Session(
-	new Veridu\SDK\API(
-		new Veridu\Common\Config(
-			$veridu['client'],
-			$veridu['secret'],
-			$veridu['version']
-		),
-		new Veridu\HTTPClient\CurlClient,
-		new Veridu\Signature\HMAC
-	)
+//Instantiate API object
+$api = Veridu\API::factory(
+	$veridu['client'],
+	$veridu['secret'],
+	$veridu['version']
 );
 
-//creates new a read/write Veridu session
-//more info: https://veridu.com/wiki/Session_Resource
-$session->create(false);
+/*
+ * Creates new a read/write Veridu session
+ * More info: https://veridu.com/wiki/Session_Resource
+ */
+$api->session->create(false);
+
+//gets the storage object
+$storage = $api->getStorage();
+//gets session token
+$session = $storage->getSessionToken();
 
 //PHP's session start
 session_start();
@@ -51,7 +50,7 @@ $_SESSION['nonce'] = bin2hex(openssl_random_pseudo_bytes(10));
 				var //Widget instantiation
 					veridu = new Veridu({
 						client: '<?=$veridu['client'];?>',
-						session: '<?=$session->getToken();?>',
+						session: '<?=$session?>',
 						language: 'en-us',
 						country: 'uk',
 						version: '<?=$veridu['version'];?>'
